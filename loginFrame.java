@@ -56,13 +56,14 @@ public class loginFrame extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e){
         if(e.getSource()==login){
-            String textNama,textPassword;
-            textNama=username.getText();
-            textPassword=password.getText();
+           String textNama,textPassword;
+           textNama=username.getText();
+                   textPassword=password.getText();
             if(textNama.equalsIgnoreCase("Hilal")&&textPassword.equalsIgnoreCase("Hilal")){
                 JOptionPane.showMessageDialog(this,"LOGIN SUKSES");
                 this.dispose();
-
+                menu menu = new menu();
+                 menu.menu();
             }
             else {
              JOptionPane.showMessageDialog(this,"USERNAME/PASSWORD Yang anda masukkan salah");   
