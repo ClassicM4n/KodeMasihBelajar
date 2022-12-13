@@ -8,7 +8,8 @@ package src;
  * @server adiyaksa
  */
 public class Login {
-    
+    //main file,run file nya dari sini
+   
     public static void main(String[]args){
     loginFrame frame = new loginFrame();
     frame.setTitle("Login");
