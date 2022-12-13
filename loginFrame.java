@@ -2,25 +2,33 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.kegabutanminggu;
+
+package src;
+import src.registerakun;
 
 /**
  *
- * @author Toshiba
+ * @author hilal
+ * @server adiyaksa
  */
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 public class loginFrame extends JFrame implements ActionListener{
     Container container =getContentPane();
+    JLabel text= new JLabel("LOGIN SISWA");
     JButton login = new JButton("Login");
-    JButton reset = new JButton("Reset");
-    JLabel user= new JLabel("Username");
-    JLabel pass=new JLabel("Password");
+    JButton registerButton = new JButton("Register");
+    JLabel user= new JLabel("Username: ");
+    JLabel pass=new JLabel("Password: ");
     JPasswordField password = new JPasswordField();
     JTextField username= new JTextField();
     JCheckBox checkbox=new JCheckBox("Show Password");
+    
     loginFrame(){
         setLayoutManager();
         setLocationAndSize();
@@ -36,7 +44,8 @@ public class loginFrame extends JFrame implements ActionListener{
     pass.setBounds(50,220,100,30);
     password.setBounds(150,220,150,30);
     login.setBounds(50,300,100,30);
-    reset.setBounds(150,300,100,30);
+    // Mengimprove code button agar tidak menyatu
+    registerButton.setBounds(170,300,100,30);
     checkbox.setBounds(150,260,150,30);
     }
     public void initComponents(){
@@ -45,14 +54,16 @@ public class loginFrame extends JFrame implements ActionListener{
     container.add(pass);
     container.add(password);
     container.add(login);
-    container.add(reset);
+    container.add(registerButton);
     container.add(checkbox);
     }
     public void actionEvents(){
     login.addActionListener(this);
-    reset.addActionListener(this);
+    registerButton.addActionListener(this);
     checkbox.addActionListener(this);
+    addWindowListener(new exitclass());
     }
+
     @Override
     public void actionPerformed(ActionEvent e){
         if(e.getSource()==login){
@@ -69,10 +80,13 @@ public class loginFrame extends JFrame implements ActionListener{
              JOptionPane.showMessageDialog(this,"USERNAME/PASSWORD Yang anda masukkan salah");   
             }
         }
-        if(e.getSource()==reset){
-            username.setText("");
-            password.setText("");
-        }
+        // Reset menjadi tombol register
+        if(e.getSource()==registerButton){
+          this.dispose();
+          System.out.println("Passed Register Button");
+          registerakun kontol = new registerakun();
+          kontol.registerakun();
+                  }
         if(e.getSource()==checkbox){ 
             if(checkbox.isSelected()){
                 password.setEchoChar((char)0);
@@ -82,6 +96,13 @@ public class loginFrame extends JFrame implements ActionListener{
             }
         }
     }
-  
-    
+    private class exitclass extends WindowAdapter {
+        @Override
+        public void windowClosing(WindowEvent e){
+            int confirmed=JOptionPane.showConfirmDialog(null,"Are you sure on exit","EXIT",JOptionPane.YES_NO_OPTION);
+            if(confirmed==JOptionPane.YES_OPTION){
+                System.exit(0);
+            }
+        }
+    }
 }

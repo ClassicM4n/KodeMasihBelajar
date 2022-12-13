@@ -2,16 +2,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.kegabutanminggu;
+package src;
 
 /**
  *
- * @author Toshiba
+ * @author hilal
+ * @server adiyaksa
  */
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 public class menu extends JFrame implements ActionListener{
    Container container = getContentPane();
    JButton menu1=new JButton("CEK PROFIL");
@@ -51,6 +54,7 @@ public class menu extends JFrame implements ActionListener{
     menu2.addActionListener(this);
     menu3.addActionListener(this);
     exit.addActionListener(this);
+    addWindowListener(new exitclass());
     }
     @Override
     public void actionPerformed(ActionEvent e){
@@ -68,6 +72,15 @@ public class menu extends JFrame implements ActionListener{
             if(keluar==JOptionPane.YES_OPTION){
                 System.exit(0);
             }  
+        }
+    }
+    private class exitclass extends WindowAdapter {
+        @Override
+        public void windowClosing(WindowEvent e){
+            int confirmed=JOptionPane.showConfirmDialog(null,"Are you sure on exit","EXIT",JOptionPane.YES_NO_OPTION);
+            if(confirmed==JOptionPane.YES_OPTION){
+                System.exit(0);
+            }
         }
     }
 }
