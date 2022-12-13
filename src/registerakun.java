@@ -20,6 +20,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 public class registerakun extends JFrame implements ActionListener{
+    //Komponen untuk JFrame 
     Container container =getContentPane();
     JLabel text= new JLabel("REGISTER SISWA");
     JButton daftar = new JButton("Daftar");
@@ -32,13 +33,14 @@ public class registerakun extends JFrame implements ActionListener{
     JTextField username= new JTextField();
     JCheckBox checkbox=new JCheckBox("Show Password");
 
-    
+    //Method utama
     public void registerakun(){
         setLayoutManager();
         setLocationAndSize();
         initComponents();
         actionEvents();
     }
+    //Layout dan JFrame
     public void setLayoutManager(){
         setTitle("Register");
           setVisible(true);
@@ -47,6 +49,7 @@ public class registerakun extends JFrame implements ActionListener{
 
         container.setLayout(null);
     }
+    //Posisi Komponen di JFrame
     public void setLocationAndSize(){
     text.setBounds(75,-40, 300, 300);
     user.setBounds(50,160,100,30);
@@ -62,6 +65,7 @@ public class registerakun extends JFrame implements ActionListener{
     text.setFont( new Font("",Font.PLAIN,22));
     text.setForeground(Color.BLUE);
     }
+    //komponen di JFrame
     public void initComponents(){
     container.add(text);
     container.add(username);
@@ -73,6 +77,7 @@ public class registerakun extends JFrame implements ActionListener{
     container.add(daftar);
     container.add(kembali);
     }
+    //Penambahan ActionListener dan WindowListener
     public void actionEvents(){
     daftar.addActionListener(this);
     kembali.addActionListener(this);
@@ -80,6 +85,7 @@ public class registerakun extends JFrame implements ActionListener{
     addWindowListener(new exitclass());
     }
     @Override
+    //ActionEvent handler
     public void actionPerformed(ActionEvent e){
         if(e.getSource()==daftar){
            String textNama,textPassword, textPassword2;
@@ -121,6 +127,7 @@ return;
             }
         }
     }
+    //WindowEvent handler
     private class exitclass extends WindowAdapter {
         @Override
         public void windowClosing(WindowEvent e){
